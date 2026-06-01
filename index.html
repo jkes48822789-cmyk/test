@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>課程報價試算器</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f5f3ee;
+            --primary-color: #6b7fa3;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --border-color: #dddddd;
+            --warning-color: #d9534f;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .warning-msg {
+            color: var(--warning-color);
+            font-size: 0.85rem;
+            margin-top: 4px;
+            min-height: 20px;
+            font-weight: 500;
+        }
+
+        .result-box {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px dashed var(--border-color);
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .result-row.total {
+            margin-top: 15px;
+            margin-bottom: 0;
+        }
+
+        .result-row.total .price-label {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .result-row.total .price-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>課程報價試算器</h2>
+        
+        <div class="form-group">
+            <label for="students">學員人數</label>
+            <input type="number" id="students" min="0" placeholder="0" value="">
+        </div>
+
+        <div class="form-group">
+            <label for="hours">上課時數</label>
+            <input type="number" id="hours" min="0" step="0.5" placeholder="0" value="">
+        </div>
+
+        <div class="form-group">
+            <label for="price">每小時單價 (NT$)</label>
+            <input type="number" id="price" min="0" placeholder="0" value="">
+        </div>
+
+        <div class="form-group">
+            <label for="discount">折扣率 (%)</label>
+            <input type="number" id="discount" min="0" max="100" step="0.1" placeholder="0" value="">
+            <div id="warning" class="warning-msg"></div>
+        </div>
+
+        <div class="result-box">
+            <div class="result-row">
+                <span>小計</span>
+                <span id="subtotal">NT$ 0</span>
+            </div>
+            <div class="result-row">
+                <span>折扣金額</span>
+                <span id="discountAmount">NT$ 0</span>
+            </div>
+            <div class="result-row total">
+                <span class="price-label">總計</span>
+                <span id="total" class="price-value">NT$ 0</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const inputs = ['students', 'hours', 'price', 'discount'];
+        
+        inputs.forEach(id => {
+            document.getElementById(id).addEventListener('input', calculate);
+        });
+
+        function calculate() {
+            // 取得輸入值，若空白或非數字則視為 0
+            const students = Math.max(0, parseFloat(document.getElementById('students').value) || 0);
+            const hours = Math.max(0, parseFloat(document.getElementById('hours').value) || 0);
+            const price = Math.max(0, parseFloat(document.getElementById('price').value) || 0);
+            const discountPercent = parseFloat(document.getElementById('discount').value) || 0;
+
+            // 驗證折扣率
+            const warningDiv = document.getElementById('warning');
+            if (discountPercent > 30) {
+                warningDiv.textContent = '折扣率過高，請確認';
+            } else {
+                warningDiv.textContent = '';
+            }
+
+            // 防呆：處理負數折扣或超過100等極端狀況，計算時限制在合法的 0-100% 區間
+            const validDiscountPercent = Math.max(0, Math.min(100, discountPercent));
+
+            // 計算公式
+            const subtotal = students * hours * price;
+            const discountAmount = subtotal * (validDiscountPercent / 100);
+            const total = subtotal - discountAmount;
+
+            // 格式化輸出千分位
+            document.getElementById('subtotal').textContent = `NT$ ${Math.round(subtotal).toLocaleString('zh-TW')}`;
+            document.getElementById('discountAmount').textContent = `NT$ ${Math.round(discountAmount).toLocaleString('zh-TW')}`;
+            document.getElementById('total').textContent = `NT$ ${Math.round(total).toLocaleString('zh-TW')}`;
+        }
+    </script>
+</body>
+</html>
