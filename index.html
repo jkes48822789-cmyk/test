@@ -126,9 +126,6 @@
                     <div class="mt-4 pt-4 border-t border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <span class="text-[11px] text-stone-400 font-mono">證書字號: y3Nh-uT4e</span>
                         <div class="flex gap-2">
-                            <button onclick="copyToClipboard('y3Nh-uT4e', 'Excel 證書序號')" class="px-4 py-1.5 border border-brand-accent/20 text-brand-accent hover:bg-brand-accent/5 rounded-lg text-xs font-medium flex items-center gap-1 transition-colors" title="複製證書序號">
-                                <i class="fa-regular fa-copy"></i> 複製序號
-                            </button>
                             <a href="https://learn.microsoft.com/zh-tw/credentials/certifications/mos-excel-expert-2019/" target="_blank" class="px-4 py-1.5 bg-brand-accent hover:bg-brand-accent/90 text-white rounded-lg text-xs font-medium flex items-center gap-1 transition-colors">
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i> 官方規格
                             </a>
@@ -182,9 +179,6 @@
                     <div class="mt-4 pt-4 border-t border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <span class="text-[11px] text-stone-400 font-mono">證書字號: y3qx-DkNd</span>
                         <div class="flex gap-2">
-                            <button onclick="copyToClipboard('y3qx-DkNd', 'PowerPoint 證書序號')" class="px-4 py-1.5 border border-brand-accent/20 text-brand-accent hover:bg-brand-accent/5 rounded-lg text-xs font-medium flex items-center gap-1 transition-colors" title="複製證書序號">
-                                <i class="fa-regular fa-copy"></i> 複製序號
-                            </button>
                             <a href="https://learn.microsoft.com/zh-tw/credentials/certifications/mos-powerpoint-2019/" target="_blank" class="px-4 py-1.5 bg-brand-accent hover:bg-brand-accent/90 text-white rounded-lg text-xs font-medium flex items-center gap-1 transition-colors">
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i> 官方規格
                             </a>
@@ -238,9 +232,6 @@
                     <div class="mt-4 pt-4 border-t border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <span class="text-[11px] text-stone-400 font-mono">證書字號: wYe63-2FET</span>
                         <div class="flex gap-2">
-                            <button onclick="copyToClipboard('wYe63-2FET', 'Word 證書序號')" class="px-4 py-1.5 border border-brand-accent/20 text-brand-accent hover:bg-brand-accent/5 rounded-lg text-xs font-medium flex items-center gap-1 transition-colors" title="複製證書序號">
-                                <i class="fa-regular fa-copy"></i> 複製序號
-                            </button>
                             <a href="https://learn.microsoft.com/zh-tw/credentials/certifications/mos-word-expert-2019/" target="_blank" class="px-4 py-1.5 bg-brand-accent hover:bg-brand-accent/90 text-white rounded-lg text-xs font-medium flex items-center gap-1 transition-colors">
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i> 官方規格
                             </a>
@@ -260,51 +251,6 @@
         </div>
     </footer>
 
-    <!-- 全局提示框 (Toast) -->
-    <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-stone-900/90 text-white text-xs px-4 py-2.5 rounded-full shadow-xl flex items-center gap-2 transition-all duration-300 transform translate-y-20 opacity-0 pointer-events-none z-50">
-        <i class="fa-solid fa-circle-check text-green-400" id="toast-icon"></i>
-        <span id="toast-text">已成功複製</span>
-    </div>
-
-    <script>
-        // 複製功能輔助器
-        function copyToClipboard(text, msg) {
-            const tempInput = document.createElement('input');
-            tempInput.value = text;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-
-            showToast(`已成功複製${msg} : ${text}`, true);
-        }
-
-        // Toast 控制器
-        function showToast(message, isSuccess = true) {
-            const toast = document.getElementById('toast');
-            const toastText = document.getElementById('toast-text');
-            
-            if (toast && toastText) {
-                toastText.innerText = message;
-                
-                // 動態調整圖示
-                const icon = toast.querySelector('i');
-                if (isSuccess) {
-                    icon.className = "fa-solid fa-circle-check text-green-400";
-                } else {
-                    icon.className = "fa-solid fa-circle-exclamation text-red-400";
-                }
-
-                toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
-                toast.classList.add('translate-y-0', 'opacity-100');
-                
-                setTimeout(() => {
-                    toast.classList.remove('translate-y-0', 'opacity-100');
-                    toast.classList.add('translate-y-20', 'opacity-0');
-                    toast.classList.add('pointer-events-none');
-                }, 3000);
-            }
-        }
-    </script>
+    <!-- 刪除原本 Toast 與 script 的拷貝邏輯，使代碼最精簡 -->
 </body>
 </html>
