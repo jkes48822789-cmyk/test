@@ -6,28 +6,22 @@
     <title>葉奇昌 | 專業證照數位展示館</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts Noto Sans TC & Playfair Display (外文古典美) -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght=300;400;500;700&family=Playfair+Display:ital,wght=0,600;1,400&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Noto Sans TC', 'sans-serif'],
-                        serif: ['Playfair Display', 'Georgia', 'serif'],
-                    },
+                    fontFamily: { sans: ['Noto Sans TC', 'sans-serif'] },
                     colors: {
                         brand: {
-                            beige: '#FDFBF7',  // 極致暖米白底色
-                            dark: '#2D2A26',   // 炭灰深色文字
-                            accent: '#8C7853', // 暖大地金屬色
-                            accentLight: '#F3EFE6', // 輕透暖沙色
-                            powerpoint: '#D83B01', // PPT 橘
-                            word: '#0078D4',       // Word 藍
-                            excel: '#107C41'       // Excel 綠
+                            beige: '#FDFBF7',
+                            dark: '#2D2A26',
+                            accent: '#8C7853',
+                            powerpoint: '#D83B01',
+                            word: '#0078D4',
+                            excel: '#107C41'
                         }
                     }
                 }
@@ -35,102 +29,49 @@
         }
     </script>
     <style>
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background-color: #FDFBF7;
-            scroll-behavior: smooth;
-        }
-        .premium-shadow {
-            box-shadow: 0 12px 40px -12px rgba(140, 120, 83, 0.18);
-        }
-        .premium-shadow-sm {
-            box-shadow: 0 6px 20px -5px rgba(140, 120, 83, 0.08);
-        }
-        /* 證書紋路浮水印模擬 */
-        .guilloche-bg {
-            background-image: radial-gradient(circle, #8c7853 0.5px, transparent 0.5px), radial-gradient(circle, #8c7853 0.5px, #fdfbf7 0.5px);
-            background-size: 8px 8px;
-            background-position: 0 0, 4px 4px;
-            opacity: 0.03;
-        }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #FDFBF7; }
+        .premium-shadow-sm { box-shadow: 0 6px 20px -5px rgba(140, 120, 83, 0.08); }
     </style>
 </head>
-<body class="text-brand-dark min-h-screen selection:bg-brand-accent/20 selection:text-brand-accent flex flex-col">
+<body class="text-brand-dark min-h-screen flex flex-col">
 
-    <!-- 頂部精緻導航列 -->
     <header class="sticky top-0 z-40 bg-brand-beige/90 backdrop-blur-md border-b border-brand-accent/10">
         <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-            <!-- 左上角單獨放置的「返回首頁」按鈕 -->
-            <a href="https://jkes48822789-cmyk.github.io/Portfolio/" class="font-medium text-xs md:text-sm tracking-wider text-stone-600 hover:text-brand-accent flex items-center gap-1.5 group transition-colors">
-                <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i>
-                <span>返回首頁</span>
+            <a href="https://jkes48822789-cmyk.github.io/Portfolio/" class="text-brand-accent text-sm font-medium flex items-center gap-2 hover:text-brand-dark transition-colors">
+                <i class="fa-solid fa-arrow-left"></i> 返回首頁
             </a>
-            <!-- 位於返回首頁右側位置的姓名 -->
-            <span class="font-bold text-xs md:text-sm tracking-widest text-brand-accent">
-                YEH CHI-CHANG
-            </span>
+            <span class="font-bold text-brand-accent tracking-widest text-sm">YEH CHI-CHANG</span>
         </div>
     </header>
 
-    <!-- 頁面主題橫幅 -->
     <section class="max-w-4xl mx-auto px-6 pt-12 pb-8 text-center">
-        <h1 class="text-3xl md:text-4xl font-bold tracking-tight mt-3 mb-2">專業證照數位展示館</h1>
-        <p class="text-stone-500 text-xs md:text-sm max-w-xl mx-auto leading-relaxed">
-            此空間集中展示葉奇昌所考取之 Certiport 官方核發 Microsoft Office Specialist 國際認證。
-        </p>
+        <h1 class="text-2xl font-bold mb-3">專業證照數位展示館</h1>
+        <p class="text-stone-500 text-sm">此空間集中展示葉奇昌所考取之 Certiport 官方核發 Microsoft Office Specialist 國際認證。</p>
         <div class="h-[1px] w-16 bg-brand-accent/30 mx-auto mt-6"></div>
     </section>
 
-    <!-- 證照列表堆疊區 (Vertical Stack List) -->
     <main class="max-w-4xl mx-auto px-6 flex-grow mb-16 w-full">
-        <div class="flex flex-col gap-8" id="credentials-grid">
+        <div class="flex flex-col gap-8">
             
-            <!-- Excel 卡片 (專家級) -->
-            <div class="cert-card bg-white rounded-2xl premium-shadow-sm border border-brand-accent/5 flex flex-col md:flex-row overflow-hidden group hover:shadow-md transition-all duration-300">
-                <!-- 左側/上側：相片區域 -->
-                <div class="md:w-1/3 aspect-[4/3] md:aspect-auto bg-stone-50/50 p-5 relative overflow-hidden flex items-center justify-center border-b md:border-b-0 md:border-r border-stone-100 shrink-0">
-                    <img 
-                        src="https://jkes48822789-cmyk.github.io/Portfolio/Image/Excel001.jpg" 
-                        alt="Excel 證書照片" 
-                        class="max-w-full max-h-full object-contain rounded-sm drop-shadow-md transition-transform duration-500 group-hover:scale-102"
-                        onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
-                    >
-                    <!-- 圖片未上傳時的優雅向量佔位 -->
-                    <div class="absolute inset-0 bg-brand-beige/40 flex flex-col items-center justify-center p-4 text-center hidden">
-                        <div class="guilloche-bg absolute inset-0"></div>
-                        <i class="fa-regular fa-file-excel text-brand-excel text-4xl mb-2 relative z-10"></i>
-                        <span class="text-[10px] font-bold text-stone-400 tracking-wider relative z-10">MOS EXCEL 證書照片</span>
-                        <span class="text-[9px] text-stone-300 mt-0.5 italic relative z-10">(預期路徑: Image/Excel001.jpg)</span>
-                    </div>
+            <!-- Excel 卡片 -->
+            <div class="cert-card bg-white rounded-2xl premium-shadow-sm border border-brand-accent/5 flex flex-col md:flex-row overflow-hidden">
+                <div class="md:w-1/3 bg-stone-50/50 p-5 flex items-center justify-center border-b md:border-b-0 md:border-r border-stone-100">
+                    <img src="https://jkes48822789-cmyk.github.io/Portfolio/Image/Excel001.jpg" alt="Excel 證書" class="max-w-full max-h-48 object-contain rounded-sm drop-shadow-md">
                 </div>
-
-                <!-- 右側/下側：內容資訊區域 -->
                 <div class="md:w-2/3 p-6 flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-[10px] font-bold px-2.5 py-0.5 bg-brand-excel/10 text-brand-excel rounded-full">MOS 國際認證</span>
-                            <span class="text-[11px] text-stone-400"><i class="fa-regular fa-calendar mr-1"></i>2026.05</span>
-                        </div>
-                        <h3 class="font-bold text-stone-800 text-base mb-1 group-hover:text-brand-accent transition-colors">MOS Excel Expert 2019 專家級認證</h3>
+                        <span class="text-[10px] font-bold px-2.5 py-0.5 bg-brand-excel/10 text-brand-excel rounded-full">MOS 國際認證</span>
+                        <h3 class="font-bold text-stone-800 text-base mt-2 mb-1">MOS Excel Expert 2019 專家級認證</h3>
                         <p class="text-[10px] text-stone-400 font-mono mb-3">核發單位: Certiport</p>
-                        
-                        <p class="text-xs text-stone-500 leading-relaxed mb-4">
-                            這項專家級認證旨在讓我們學會如何管理大型且複雜的數據報表。考生需要學會自訂活頁簿設定、熟練套用進階的財務與邏輯函數，並能錄製和編輯簡易巨集來自動化重複的日常工作，將雜亂的原始資料有效彙整並轉換成具備專業分析功能的動態圖表。
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-1.5 mb-3">
-                            <span class="text-[9px] bg-stone-50 border border-stone-100 text-stone-600 px-2.5 py-0.5 rounded">管理工作簿選項和設定</span>
-                            <span class="text-[9px] bg-stone-50 border border-stone-100 text-stone-600 px-2.5 py-0.5 rounded">管理和格式化資料</span>
-                            <span class="text-[9px] bg-stone-50 border border-stone-100 text-stone-600 px-2.5 py-0.5 rounded">建立進階公式和巨集</span>
-                            <span class="text-[9px] bg-stone-50 border border-stone-100 text-stone-600 px-2.5 py-0.5 rounded">管理進階圖表和表格</span>
-                        </div>
+                        <p class="text-xs text-stone-500 leading-relaxed mb-4">獲得 Microsoft 官方之 Excel 2019 Expert (專家級認證)，證明具有為各種專業與商務目的，設計、管理、佈署與發布專業試算表的高階能力。應試者能自訂 Excel 環境以符合專案特殊需求、建置自動化排程並顯著提升團隊生產力。</p>
                     </div>
-
-                    <!-- 動作按鈕 -->
                     <div class="mt-4 pt-4 border-t border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <span class="text-[11px] text-stone-400 font-mono">證書字號: y3Nh-uT4e</span>
                         <div class="flex gap-2">
-                            <a href="https://nabi.104.com.tw/ability/10047973" target="_blank" class="px-4 py-1.5 bg-brand-accent hover:bg-brand-accent/90 text-white rounded-lg text-xs font-medium flex items-center gap-1 transition-colors">
+                            <a href="https://jkes48822789-cmyk.github.io/Portfolio/Image/Excel001.jpg" target="_blank" class="px-3 py-1.5 border border-brand-accent text-brand-accent rounded-lg text-[11px] font-medium flex items-center gap-1 hover:bg-brand-accent hover:text-white transition-colors">
+                                <i class="fa-solid fa-expand"></i> 查看大圖
+                            </a>
+                            <a href="https://nabi.104.com.tw/ability/10047973" target="_blank" class="px-4 py-1.5 bg-brand-accent text-white rounded-lg text-[11px] font-medium flex items-center gap-1">
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i> 證照說明
                             </a>
                         </div>
@@ -138,52 +79,25 @@
                 </div>
             </div>
 
-            <!-- Word 卡片 (專家級) -->
-            <div class="cert-card bg-white rounded-2xl premium-shadow-sm border border-brand-accent/5 flex flex-col md:flex-row overflow-hidden group hover:shadow-md transition-all duration-300">
-                <!-- 左側/上側：相片區域 -->
-                <div class="md:w-1/3 aspect-[4/3] md:aspect-auto bg-stone-50/50 p-5 relative overflow-hidden flex items-center justify-center border-b md:border-b-0 md:border-r border-stone-100 shrink-0">
-                    <img 
-                        src="https://jkes48822789-cmyk.github.io/Portfolio/Image/word001.jpg" 
-                        alt="Word 證書照片" 
-                        class="max-w-full max-h-full object-contain rounded-sm drop-shadow-md transition-transform duration-500 group-hover:scale-102"
-                        onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
-                    >
-                    <!-- 圖片未上傳時的優雅向量佔位 -->
-                    <div class="absolute inset-0 bg-brand-beige/40 flex flex-col items-center justify-center p-4 text-center hidden">
-                        <div class="guilloche-bg absolute inset-0"></div>
-                        <i class="fa-regular fa-file-word text-brand-word text-4xl mb-2 relative z-10"></i>
-                        <span class="text-[10px] font-bold text-stone-400 tracking-wider relative z-10">MOS WORD 證書照片</span>
-                        <span class="text-[9px] text-stone-300 mt-0.5 italic relative z-10">(預期路徑: Image/word001.jpg)</span>
-                    </div>
+            <!-- Word 卡片 -->
+            <div class="cert-card bg-white rounded-2xl premium-shadow-sm border border-brand-accent/5 flex flex-col md:flex-row overflow-hidden">
+                <div class="md:w-1/3 bg-stone-50/50 p-5 flex items-center justify-center border-b md:border-b-0 md:border-r border-stone-100">
+                    <img src="https://jkes48822789-cmyk.github.io/Portfolio/Image/word001.jpg" alt="Word 證書" class="max-w-full max-h-48 object-contain rounded-sm drop-shadow-md">
                 </div>
-
-                <!-- 右側/下側：內容資訊區域 -->
                 <div class="md:w-2/3 p-6 flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-[10px] font-bold px-2.5 py-0.5 bg-brand-word/10 text-brand-word rounded-full">MOS 國際認證</span>
-                            <span class="text-[11px] text-stone-400"><i class="fa-regular fa-calendar mr-1"></i>2026.05</span>
-                        </div>
-                        <h3 class="font-bold text-stone-800 text-base mb-1 group-hover:text-brand-accent transition-colors">MOS Word Expert 2019 專家級認證</h3>
+                        <span class="text-[10px] font-bold px-2.5 py-0.5 bg-brand-word/10 text-brand-word rounded-full">MOS 國際認證</span>
+                        <h3 class="font-bold text-stone-800 text-base mt-2 mb-1">MOS Word Expert 2019 專家級認證</h3>
                         <p class="text-[10px] text-stone-400 font-mono mb-3">核發單位: Certiport</p>
-                        
-                        <p class="text-xs text-stone-500 leading-relaxed mb-4">
-                            這項專家級認證旨在讓我們學會如何規範且自動化地排版大型長篇文件。考生需要學會建立符合企業形象的自訂文件範本，並運用交叉參照、自動更新的目錄和索引來管理多頁報告，同時懂得設定文件加密權限，以維護商業合約的機密性與安全。
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-1.5 mb-3">
-                            <span class="text-[9px] bg-stone-50 border border-stone-100 text-stone-600 px-2.5 py-0.5 rounded">管理文件選項與進階設定</span>
-                            <span class="text-[9px] bg-stone-50 border border-stone-100 text-stone-600 px-2.5 py-0.5 rounded">設計與自訂專業文件範本</span>
-                            <span class="text-[9px] bg-stone-50 border border-stone-100 text-stone-600 px-2.5 py-0.5 rounded">建立進階參照、目錄與索引</span>
-                            <span class="text-[9px] bg-stone-50 border border-stone-100 text-stone-600 px-2.5 py-0.5 rounded">建立與管理自訂巨集元素</span>
-                        </div>
+                        <p class="text-xs text-stone-500 leading-relaxed mb-4">經微軟官方最高級別專家認證，證明具備管理進階文件設定與自訂範本格式、處理大型精密多層級文檔、設定交叉參照，並利用巨集及表單控制項實現自動化與協同防護之最高文書實力。</p>
                     </div>
-
-                    <!-- 動作按鈕 -->
                     <div class="mt-4 pt-4 border-t border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <span class="text-[11px] text-stone-400 font-mono">證書字號: wYe63-2FET</span>
                         <div class="flex gap-2">
-                            <a href="https://nabi.104.com.tw/ability/10047971" target="_blank" class="px-4 py-1.5 bg-brand-accent hover:bg-brand-accent/90 text-white rounded-lg text-xs font-medium flex items-center gap-1 transition-colors">
+                            <a href="https://jkes48822789-cmyk.github.io/Portfolio/Image/word001.jpg" target="_blank" class="px-3 py-1.5 border border-brand-accent text-brand-accent rounded-lg text-[11px] font-medium flex items-center gap-1 hover:bg-brand-accent hover:text-white transition-colors">
+                                <i class="fa-solid fa-expand"></i> 查看大圖
+                            </a>
+                            <a href="https://nabi.104.com.tw/ability/10047971" target="_blank" class="px-4 py-1.5 bg-brand-accent text-white rounded-lg text-[11px] font-medium flex items-center gap-1">
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i> 證照說明
                             </a>
                         </div>
@@ -191,52 +105,25 @@
                 </div>
             </div>
 
-            <!-- PowerPoint 卡片 (助理級) -->
-            <div class="cert-card bg-white rounded-2xl premium-shadow-sm border border-brand-accent/5 flex flex-col md:flex-row overflow-hidden group hover:shadow-md transition-all duration-300">
-                <!-- 左側/上側：相片區域 -->
-                <div class="md:w-1/3 aspect-[4/3] md:aspect-auto bg-stone-50/50 p-5 relative overflow-hidden flex items-center justify-center border-b md:border-b-0 md:border-r border-stone-100 shrink-0">
-                    <img 
-                        src="https://jkes48822789-cmyk.github.io/Portfolio/Image/PowerPoint001.jpg" 
-                        alt="PowerPoint 證書照片" 
-                        class="max-w-full max-h-full object-contain rounded-sm drop-shadow-md transition-transform duration-500 group-hover:scale-102"
-                        onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
-                    >
-                    <!-- 圖片未上傳時的優雅向量佔位 -->
-                    <div class="absolute inset-0 bg-brand-beige/40 flex flex-col items-center justify-center p-4 text-center hidden">
-                        <div class="guilloche-bg absolute inset-0"></div>
-                        <i class="fa-regular fa-file-powerpoint text-brand-powerpoint text-4xl mb-2 relative z-10"></i>
-                        <span class="text-[10px] font-bold text-stone-400 tracking-wider relative z-10">MOS POWERPOINT 證書照片</span>
-                        <span class="text-[9px] text-stone-300 mt-0.5 italic relative z-10">(預期路徑: Image/PowerPoint001.jpg)</span>
-                    </div>
+            <!-- PowerPoint 卡片 -->
+            <div class="cert-card bg-white rounded-2xl premium-shadow-sm border border-brand-accent/5 flex flex-col md:flex-row overflow-hidden">
+                <div class="md:w-1/3 bg-stone-50/50 p-5 flex items-center justify-center border-b md:border-b-0 md:border-r border-stone-100">
+                    <img src="https://jkes48822789-cmyk.github.io/Portfolio/Image/PowerPoint001.jpg" alt="PowerPoint 證書" class="max-w-full max-h-48 object-contain rounded-sm drop-shadow-md">
                 </div>
-
-                <!-- 右側/下側：內容資訊區域 -->
                 <div class="md:w-2/3 p-6 flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-[10px] font-bold px-2.5 py-0.5 bg-brand-powerpoint/10 text-brand-powerpoint rounded-full">MOS 國際認證</span>
-                            <span class="text-[11px] text-stone-400"><i class="fa-regular fa-calendar mr-1"></i>2026.05</span>
-                        </div>
-                        <h3 class="font-bold text-stone-800 text-base mb-1 group-hover:text-brand-accent transition-colors">MOS PowerPoint 2019 助理級認證</h3>
+                        <span class="text-[10px] font-bold px-2.5 py-0.5 bg-brand-powerpoint/10 text-brand-powerpoint rounded-full">MOS 國際認證</span>
+                        <h3 class="font-bold text-stone-800 text-base mt-2 mb-1">MOS PowerPoint 2019 助理級認證</h3>
                         <p class="text-[10px] text-stone-400 font-mono mb-3">核發單位: Certiport</p>
-                        
-                        <p class="text-xs text-stone-500 leading-relaxed mb-4">
-                            這項認證旨在讓我們學會如何建立結構清晰、排版得體的簡報。考生需要學會設定投影片母片以維持視覺的一致性，並掌握插入圖形、SmartArt 資訊圖表與基礎多媒體轉場動畫的方法，確保在工作匯報或提案發表時能精準且流暢地傳遞簡報重點。
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-1.5 mb-3">
-                            <span class="text-[9px] bg-stone-50 border border-stone-100 text-stone-600 px-2.5 py-0.5 rounded">建立與管理簡報</span>
-                            <span class="text-[9px] bg-stone-50 border border-stone-100 text-stone-600 px-2.5 py-0.5 rounded">插入及格式化圖形和投影片</span>
-                            <span class="text-[9px] bg-stone-50 border border-stone-100 text-stone-600 px-2.5 py-0.5 rounded">插入表格/圖表/SmartArt/3D媒體</span>
-                            <span class="text-[9px] bg-stone-50 border border-stone-100 text-stone-600 px-2.5 py-0.5 rounded">套用轉場與動畫特效</span>
-                        </div>
+                        <p class="text-xs text-stone-500 leading-relaxed mb-4">經微軟官方認證，證明具備充分發揮 PowerPoint 2019 主要功能所需的技能。應試者能正確建立、編輯並強化專業級銷售演示、員工訓練簡報、教學教材及電子看板自動播放投影片，完美展示產業助理級的核心簡報設計實力。</p>
                     </div>
-
-                    <!-- 動作按鈕 -->
                     <div class="mt-4 pt-4 border-t border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <span class="text-[11px] text-stone-400 font-mono">證書字號: y3qx-DkNd</span>
                         <div class="flex gap-2">
-                            <a href="https://nabi.104.com.tw/ability/10047971" target="_blank" class="px-4 py-1.5 bg-brand-accent hover:bg-brand-accent/90 text-white rounded-lg text-xs font-medium flex items-center gap-1 transition-colors">
+                            <a href="https://jkes48822789-cmyk.github.io/Portfolio/Image/PowerPoint001.jpg" target="_blank" class="px-3 py-1.5 border border-brand-accent text-brand-accent rounded-lg text-[11px] font-medium flex items-center gap-1 hover:bg-brand-accent hover:text-white transition-colors">
+                                <i class="fa-solid fa-expand"></i> 查看大圖
+                            </a>
+                            <a href="https://nabi.104.com.tw/ability/10047971" target="_blank" class="px-4 py-1.5 bg-brand-accent text-white rounded-lg text-[11px] font-medium flex items-center gap-1">
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i> 證照說明
                             </a>
                         </div>
@@ -247,11 +134,10 @@
         </div>
     </main>
 
-    <!-- 頁尾 (Footer) -->
     <footer class="bg-stone-900 text-stone-400 py-8 text-center mt-auto">
         <div class="max-w-4xl mx-auto px-6 text-xs space-y-2">
             <p class="text-stone-300">葉奇昌 ‧ 專業證照展示空間</p>
-            <p>© 2026 Yee Chi-Chang. All Rights Reserved. 所有證書皆符合微軟與 Certiport 的合規授權與驗證。</p>
+            <p>© 2026 Yee Chi-Chang. All Rights Reserved.</p>
         </div>
     </footer>
 </body>
